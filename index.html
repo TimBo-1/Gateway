@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ÄNDERN: Titel im Browser-Tab und Beschreibung für Google -->
+  <title>Dein Name – Kurze Beschreibung</title>
+  <meta name="description" content="Eine kurze Beschreibung deiner Seite in ein bis zwei Sätzen.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+  <header class="kopf">
+    <div class="wrap kopf-innen">
+      <!-- ÄNDERN: dein Name oder Firmenname -->
+      <a class="marke" href="/">Dein Name</a>
+      <nav aria-label="Hauptmenü">
+        <a href="#angebot">Angebot</a>
+        <a href="#ueber-mich">Über mich</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- ============ STARTBEREICH ============ -->
+    <section class="start">
+      <div class="wrap">
+        <!-- ÄNDERN: Hauptaussage der Seite -->
+        <h1>Hier steht in einem Satz, was du machst und für wen.</h1>
+        <p class="einleitung">
+          Hier folgen zwei, drei Sätze, die genauer erklären, worum es geht
+          und warum Besucher bei dir richtig sind.
+        </p>
+        <a class="knopf" href="#kontakt">Kontakt aufnehmen</a>
+      </div>
+    </section>
+
+    <!-- ============ ANGEBOT ============ -->
+    <section id="angebot" class="abschnitt">
+      <div class="wrap">
+        <h2>Angebot</h2>
+        <!-- Pro Punkt einen <li>-Block. Zum Hinzufügen einfach kopieren. -->
+        <ul class="liste">
+          <li>
+            <h3>Erster Punkt</h3>
+            <p>Kurze Beschreibung in ein bis zwei Sätzen.</p>
+          </li>
+          <li>
+            <h3>Zweiter Punkt</h3>
+            <p>Kurze Beschreibung in ein bis zwei Sätzen.</p>
+          </li>
+          <li>
+            <h3>Dritter Punkt</h3>
+            <p>Kurze Beschreibung in ein bis zwei Sätzen.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ ÜBER MICH ============ -->
+    <section id="ueber-mich" class="abschnitt">
+      <div class="wrap zwei-spalten">
+        <h2>Über mich</h2>
+        <div>
+          <p>
+            Hier stellst du dich oder dein Unternehmen vor. Wer bist du,
+            was treibt dich an, und was sollten Besucher über dich wissen?
+          </p>
+          <p>
+            Ein zweiter Absatz ist optional. Leere Absätze kannst du
+            einfach löschen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KONTAKT ============ -->
+    <section id="kontakt" class="abschnitt kontakt">
+      <div class="wrap zwei-spalten">
+        <h2>Kontakt</h2>
+        <div>
+          <p>Schreib mir, ich antworte in der Regel innerhalb von zwei Werktagen.</p>
+          <!-- ÄNDERN: deine E-Mail-Adresse (an zwei Stellen) -->
+          <p><a class="mail" href="mailto:hallo@deine-domain.de">hallo@deine-domain.de</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="fuss">
+    <div class="wrap fuss-innen">
+      <!-- ÄNDERN: Name und Jahr -->
+      <span>© 2026 Dein Name</span>
+      <!-- Wichtig in Deutschland: Impressum (und Datenschutz) brauchst du als eigene Seite -->
+      <span>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>

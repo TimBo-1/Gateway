@@ -1,0 +1,215 @@
+/* ============================================================
+   EINSTELLUNGEN – hier änderst du Farben und Schriften zentral
+   ============================================================ */
+:root {
+  --hintergrund: #eef1f4;
+  --flaeche: #ffffff;
+  --text: #14202b;
+  --text-leise: #4a5a68;
+  --akzent: #0e6b73;
+  --akzent-dunkel: #0a4f55;
+  --linie: #cfd7de;
+
+  --schrift-titel: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --schrift-text: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+
+  --breite: 68rem;
+}
+
+/* ============================================================
+   GRUNDLAGEN
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--hintergrund);
+  color: var(--text);
+  font-family: var(--schrift-text);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, var(--breite));
+  margin-inline: auto;
+}
+
+a { color: var(--akzent); }
+a:hover { color: var(--akzent-dunkel); }
+
+:focus-visible {
+  outline: 3px solid var(--akzent);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--text);
+  color: #fff;
+  padding: .6rem 1rem;
+}
+.skip:focus { left: 0; z-index: 10; }
+
+/* ============================================================
+   KOPFZEILE
+   ============================================================ */
+.kopf {
+  border-bottom: 1px solid var(--linie);
+  background: var(--hintergrund);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.kopf-innen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.marke {
+  font-family: var(--schrift-titel);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.kopf nav { display: flex; gap: 1.5rem; }
+
+.kopf nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .95rem;
+}
+.kopf nav a:hover { color: var(--akzent); }
+
+/* ============================================================
+   STARTBEREICH
+   ============================================================ */
+.start { padding-block: clamp(4rem, 12vw, 9rem) clamp(3rem, 8vw, 6rem); }
+
+h1, h2, h3 {
+  font-family: var(--schrift-titel);
+  line-height: 1.1;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  max-width: 18ch;
+}
+
+.einleitung {
+  font-size: 1.2rem;
+  color: var(--text-leise);
+  max-width: 52ch;
+  margin: 1.75rem 0 2.25rem;
+}
+
+.knopf {
+  display: inline-block;
+  background: var(--akzent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: .85rem 1.6rem;
+  border-radius: .4rem;
+}
+.knopf:hover { background: var(--akzent-dunkel); color: #fff; }
+
+/* ============================================================
+   ABSCHNITTE
+   ============================================================ */
+.abschnitt {
+  padding-block: clamp(3rem, 7vw, 5rem);
+  border-top: 1px solid var(--linie);
+  scroll-margin-top: 4rem;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: .4rem;
+}
+
+.zwei-spalten {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem 3rem;
+}
+
+@media (min-width: 48rem) {
+  .zwei-spalten { grid-template-columns: 1fr 2fr; }
+}
+
+.zwei-spalten p { margin: 0 0 1rem; max-width: 60ch; }
+
+/* Angebotsliste */
+.liste {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2rem 3rem;
+}
+
+@media (min-width: 48rem) {
+  .liste { grid-template-columns: repeat(3, 1fr); }
+}
+
+.liste p { margin: 0; color: var(--text-leise); }
+
+/* Kontakt */
+.mail {
+  font-family: var(--schrift-titel);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 500;
+}
+
+/* ============================================================
+   FUSSZEILE
+   ============================================================ */
+.fuss {
+  border-top: 1px solid var(--linie);
+  padding-block: 1.5rem;
+  font-size: .9rem;
+  color: var(--text-leise);
+}
+
+.fuss-innen {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.fuss a { color: var(--text-leise); margin-left: 1rem; }
+.fuss a:hover { color: var(--akzent); }
+
+/* ============================================================
+   KLEINE BILDSCHIRME
+   ============================================================ */
+@media (max-width: 36rem) {
+  .kopf-innen { flex-direction: column; align-items: flex-start; gap: .5rem; }
+  .kopf nav { gap: 1.1rem; }
+}
