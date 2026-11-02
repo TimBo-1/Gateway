@@ -1,53 +1,70 @@
 /* ============================================================
-   EINSTELLUNGEN – hier änderst du Farben und Schriften zentral
+   SETTINGS – change colours and fonts here
    ============================================================ */
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --hintergrund: #eef1f4;
-  --flaeche: #ffffff;
-  --text: #14202b;
-  --text-leise: #4a5a68;
-  --akzent: #0e6b73;
-  --akzent-dunkel: #0a4f55;
-  --linie: #cfd7de;
+  --green-deep: #0b3d2c;     /* header band, footer */
+  --green: #0f6b4a;          /* primary buttons, links */
+  --green-dark: #0a5238;     /* hover */
+  --green-bright: #3ccf7a;   /* logo dot, highlights */
+  --green-soft: #e6f4ec;     /* light tint */
+  --page: #f4f6f5;
+  --surface: #ffffff;
+  --text: #13221b;
+  --text-soft: #52645b;
+  --line: #d9e2dd;
+  --on-dark: #ffffff;
+  --on-dark-soft: #b5c9bf;
 
-  --schrift-titel: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-  --schrift-text: "Public Sans", "Helvetica Neue", Arial, sans-serif;
-
-  --breite: 68rem;
+  --font: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --radius: 1.25rem;
+  --shadow: 0 1px 2px rgb(11 61 44 / .06), 0 12px 32px rgb(11 61 44 / .12);
+  --width: 68rem;
 }
 
 /* ============================================================
-   GRUNDLAGEN
+   BASICS
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
-  background: var(--hintergrund);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--page);
   color: var(--text);
-  font-family: var(--schrift-text);
+  font-family: var(--font);
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
+main { flex: 1; }
+
 .wrap {
-  width: min(100% - 2.5rem, var(--breite));
+  width: min(100% - 2.5rem, var(--width));
   margin-inline: auto;
 }
 
-a { color: var(--akzent); }
-a:hover { color: var(--akzent-dunkel); }
+a { color: var(--green); }
+a:hover { color: var(--green-dark); }
 
 :focus-visible {
-  outline: 3px solid var(--akzent);
+  outline: 3px solid var(--green-bright);
   outline-offset: 3px;
 }
+
+h1, h2, h3 { line-height: 1.1; margin: 0; letter-spacing: -.02em; }
 
 .skip {
   position: absolute;
@@ -60,156 +77,265 @@ a:hover { color: var(--akzent-dunkel); }
 .skip:focus { left: 0; z-index: 10; }
 
 /* ============================================================
-   KOPFZEILE
+   HEADER WITH TABS
    ============================================================ */
-.kopf {
-  border-bottom: 1px solid var(--linie);
-  background: var(--hintergrund);
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
   z-index: 5;
 }
 
-.kopf-innen {
+.header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding-block: 1rem;
+  min-height: 4.25rem;
 }
 
-.marke {
-  font-family: var(--schrift-titel);
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: var(--text);
+.logo {
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -.02em;
+  color: var(--green-deep);
   text-decoration: none;
 }
+.logo:hover { color: var(--green-deep); }
+.logo .dot { color: var(--green-bright); }
+.logo-light { color: var(--on-dark); }
+.logo-light:hover { color: var(--on-dark); }
 
-.kopf nav { display: flex; gap: 1.5rem; }
+.tabs {
+  display: flex;
+  gap: .25rem;
+  align-self: stretch;
+}
 
-.kopf nav a {
+.tabs a {
+  display: flex;
+  align-items: center;
+  padding-inline: 1rem;
   color: var(--text);
-  text-decoration: none;
   font-weight: 600;
   font-size: .95rem;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
 }
-.kopf nav a:hover { color: var(--akzent); }
+.tabs a:hover { color: var(--green); }
+.tabs a[aria-current="page"] {
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
 
 /* ============================================================
-   STARTBEREICH
+   HERO BAND
    ============================================================ */
-.start { padding-block: clamp(4rem, 12vw, 9rem) clamp(3rem, 8vw, 6rem); }
-
-h1, h2, h3 {
-  font-family: var(--schrift-titel);
-  line-height: 1.1;
-  margin: 0;
+.hero {
+  background: var(--green-deep);
+  color: var(--on-dark);
+  padding-block: clamp(3rem, 8vw, 5.5rem) clamp(7rem, 14vw, 9rem);
 }
 
-h1 {
-  font-size: clamp(2.4rem, 7vw, 5rem);
+.hero-small { padding-block: clamp(2.5rem, 6vw, 4rem); }
+
+.eyebrow {
+  display: inline-block;
+  font-size: .8rem;
   font-weight: 700;
-  letter-spacing: -.02em;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  font-weight: 800;
   max-width: 18ch;
 }
 
-.einleitung {
-  font-size: 1.2rem;
-  color: var(--text-leise);
-  max-width: 52ch;
-  margin: 1.75rem 0 2.25rem;
+.hero p {
+  font-size: 1.15rem;
+  color: var(--on-dark-soft);
+  max-width: 48ch;
+  margin: 1.25rem 0 0;
 }
-
-.knopf {
-  display: inline-block;
-  background: var(--akzent);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  padding: .85rem 1.6rem;
-  border-radius: .4rem;
-}
-.knopf:hover { background: var(--akzent-dunkel); color: #fff; }
 
 /* ============================================================
-   ABSCHNITTE
+   BUSINESS CARDS
    ============================================================ */
-.abschnitt {
-  padding-block: clamp(3rem, 7vw, 5rem);
-  border-top: 1px solid var(--linie);
-  scroll-margin-top: 4rem;
-}
-
-h2 {
-  font-size: clamp(1.7rem, 3.5vw, 2.2rem);
-  font-weight: 700;
-}
-
-h3 {
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin-bottom: .4rem;
-}
-
-.zwei-spalten {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem 3rem;
-}
-
-@media (min-width: 48rem) {
-  .zwei-spalten { grid-template-columns: 1fr 2fr; }
-}
-
-.zwei-spalten p { margin: 0 0 1rem; max-width: 60ch; }
-
-/* Angebotsliste */
-.liste {
+.cards {
   list-style: none;
-  margin: 2rem 0 0;
   padding: 0;
+  margin: calc(-1 * clamp(4.5rem, 10vw, 6rem)) 0 clamp(3rem, 7vw, 5rem);
   display: grid;
-  gap: 2rem 3rem;
+  gap: 1.5rem;
 }
 
 @media (min-width: 48rem) {
-  .liste { grid-template-columns: repeat(3, 1fr); }
+  .cards { grid-template-columns: repeat(2, 1fr); }
 }
 
-.liste p { margin: 0; color: var(--text-leise); }
-
-/* Kontakt */
-.mail {
-  font-family: var(--schrift-titel);
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-  font-weight: 500;
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-top: 6px solid var(--green);
 }
+
+.card-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: var(--green-deep);
+}
+.card-brand .dot { color: var(--green-bright); }
+
+.card h2 {
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  font-weight: 800;
+}
+
+.card .phone {
+  display: block;
+  margin-top: .5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-soft);
+  text-decoration: none;
+}
+.card .phone:hover { color: var(--green); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: auto;
+}
+
+/* Pill buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: .6rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .95rem;
+  text-decoration: none;
+  border: 2px solid var(--green);
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.btn-primary { background: var(--green); color: #fff; }
+.btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); color: #fff; }
+.btn-outline { background: transparent; color: var(--green); }
+.btn-outline:hover { background: var(--green-soft); color: var(--green-dark); }
+.btn-text { border-color: transparent; color: var(--green); padding-inline: .75rem; }
+.btn-text:hover { background: var(--green-soft); color: var(--green-dark); }
 
 /* ============================================================
-   FUSSZEILE
+   ABOUT PAGE
    ============================================================ */
-.fuss {
-  border-top: 1px solid var(--linie);
-  padding-block: 1.5rem;
-  font-size: .9rem;
-  color: var(--text-leise);
+.about {
+  padding-block: clamp(3rem, 7vw, 5rem);
 }
 
-.fuss-innen {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.about-box {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  display: grid;
+  gap: 1.5rem 3rem;
+}
+
+@media (min-width: 48rem) {
+  .about-box { grid-template-columns: 1fr 2fr; }
+}
+
+.about-box h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); font-weight: 800; }
+.about-box p { margin: 0 0 1rem; max-width: 60ch; color: var(--text-soft); }
+.about-box p:last-child { margin-bottom: 0; }
+
+.facts {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
   gap: .75rem;
 }
+.facts li {
+  display: flex;
+  gap: .75rem;
+  align-items: baseline;
+  font-weight: 600;
+}
+.facts li::before {
+  content: "";
+  flex: none;
+  width: .6rem;
+  height: .6rem;
+  border-radius: 50%;
+  background: var(--green-bright);
+  transform: translateY(-.1rem);
+}
 
-.fuss a { color: var(--text-leise); margin-left: 1rem; }
-.fuss a:hover { color: var(--akzent); }
+/* Plain text pages (imprint, privacy) */
+.text-page { padding-block: clamp(3rem, 7vw, 5rem); }
+.text-page .about-box { display: block; }
+.text-page h2 { font-size: 1.25rem; margin: 2rem 0 .5rem; }
+.text-page h2:first-child { margin-top: 0; }
+.placeholder { background: #fff4c2; padding: 0 .25rem; border-radius: .25rem; }
 
 /* ============================================================
-   KLEINE BILDSCHIRME
+   FOOTER
    ============================================================ */
-@media (max-width: 36rem) {
-  .kopf-innen { flex-direction: column; align-items: flex-start; gap: .5rem; }
-  .kopf nav { gap: 1.1rem; }
+.footer {
+  background: var(--green-deep);
+  color: var(--on-dark-soft);
+  padding-block: clamp(2.5rem, 6vw, 4rem) 2rem;
+  font-size: .98rem;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 48rem) {
+  .footer-grid { grid-template-columns: 2fr auto auto auto; gap: 3rem; }
+}
+
+.footer .logo { font-size: 1.4rem; }
+.footer-tagline { margin: .75rem 0 0; max-width: 36ch; }
+
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.footer a { color: var(--on-dark); text-decoration: none; }
+.footer a:hover { color: var(--green-bright); }
+.footer address { font-style: normal; color: var(--on-dark); display: grid; gap: .6rem; }
+.footer .plus-code { font-size: .9rem; color: var(--on-dark-soft); }
+
+.footer-bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgb(255 255 255 / .15);
+  font-size: .875rem;
+}
+
+/* ============================================================
+   SMALL SCREENS
+   ============================================================ */
+@media (max-width: 30rem) {
+  .header-inner { min-height: 3.75rem; }
+  .logo { font-size: 1.1rem; }
+  .tabs a { padding-inline: .6rem; }
+  .actions .btn { flex: 1 1 auto; }
 }
